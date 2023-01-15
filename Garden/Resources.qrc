@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>img/empty-cut-frame.png</file>
+        <file>img/rad-cut-frame.png</file>
+        <file>img/rad-cut.png</file>
+    </qresource>
+</RCC>
