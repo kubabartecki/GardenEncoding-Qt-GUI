@@ -36,6 +36,16 @@ To code a field we follow some rules:
   
 * **Files with one field/code**
 
+## Screenshots
+![Imgur](https://i.imgur.com/OHq6A9S.png "Manual tab")
+Manual encoding
+
+![Imgur](https://i.imgur.com/CLUu3Ph.png)
+Manual Decoding
+
+![Imgur](https://i.imgur.com/mVTYGBX.png)
+File encoding
+
 ## Example
 
 ### File with field should look like:
@@ -85,14 +95,3 @@ The output will be:
 1 #0011
 1 0
 ```
-
-
-## Screenshots
-![Imgur](https://i.imgur.com/OHq6A9S.png "Manual tab")
-Manual encoding
-
-![Imgur](https://i.imgur.com/CLUu3Ph.png)
-Manual Decoding
-
-![Imgur](https://i.imgur.com/mVTYGBX.png)
-File encoding
