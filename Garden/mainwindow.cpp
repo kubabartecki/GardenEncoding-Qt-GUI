@@ -42,7 +42,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete array;
-    delete coding;
 }
 
 int MainWindow::get_side_file(){
@@ -81,7 +80,7 @@ void MainWindow::readCodeSave(Array * arr)
                 fileSave.saveCode(result);
             }catch(const std::exception &er){
                 QMessageBox::warning(this, "Błąd", "Podano nieodpowiednie dane\nWzór: <potęga><enter><pole z wartościami>");
-                throw std::exception();
+                throw;
             }
         }
         else if(dekod){
@@ -92,7 +91,7 @@ void MainWindow::readCodeSave(Array * arr)
                 fileSave.saveField(arr);
             }catch(const std::exception &er){
                 QMessageBox::warning(this, "Błąd", "Podano nieodpowiednie dane\nWzór: <liczba(od 1 do 6)><spacja><kod ze znaków \"#01\">");
-                throw std::exception();
+                throw;
             }
         }
 }
@@ -110,18 +109,28 @@ QString MainWindow::serviceEncoding(Array * arr)
 
 void MainWindow::serviceDecoding(Array *arr, QString code_original)
 {   try{
-        QString code = code_original.split(" ")[1].split("\n")[0]; // extract only code
+        QStringList list = code_original.split("\n")[0].split(" "); //power and code
+
+        if(list.count() == 1){
+            QMessageBox::warning(this, "Błąd", "Podano nieodpowiednie dane: brak spacji");
+            throw std::invalid_argument( "Otrzymano błędny ciąg znaków" );
+        }
+
+        QString code = list[1].split("\n")[0]; // extract only code
 
         //decoding :)
         coding = new Coding(arr, code);
         coding->startDecoding(this);
 
-        QString code_final = code_original.split(" ")[0] + " " + code + "\nIlość rzodkiewek: " + QString::number(arr->get_number_of_radishes());
+        QString code_final = (QString)list[0][0] + " " + code + "\nIlość rzodkiewek: " + QString::number(arr->get_number_of_radishes());
         ui->plainTextEdit->setPlainText(code_final);
+    }catch(const std::invalid_argument& e ){
+        throw;
+     }catch(const std::exception &er){
+        delete coding;
+        throw;
+     }
 
-    }catch(const std::exception &er){
-        throw std::exception();
-    }
     delete coding;
 }
 
@@ -214,7 +223,6 @@ void MainWindow::on_pushButtonKodDekod_clicked(bool checked)
         if( (current_power < 7) && (current_power > 0) ){
 
             delete array;
-
             array = new MyLabelArray(current_power);
 
             addLabelsToGrid();
@@ -257,11 +265,14 @@ void MainWindow::on_pushButtonKodDekod_clicked(bool checked)
             int p = QVariant(code_original[0]).toInt() - 48;
             if( (p < 7) && (p > 0) ){
                 ui->spinBoxPotega->setValue(p);
-
+            try{
                 serviceDecoding(array, code_original);
+            }catch(const std::exception &er){
+                    QMessageBox::warning(this, "Błąd", "Podano nieodpowiednie dane\nWzór: <liczba(od 1 do 6)><spacja><kod ze znaków \"#01\">");
+             }
             }
             else{
-                QMessageBox::information(this, "Odmowa dostępu", "Za duży rozmiar pola lub złe dane");
+                QMessageBox::information(this, "Odmowa dostępu", "Za duży rozmiar pola lub złe dane: potęga");
             }
         }
     }
