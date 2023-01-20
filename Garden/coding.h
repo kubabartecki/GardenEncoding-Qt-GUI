@@ -3,85 +3,85 @@
 
 #include<QMessageBox>
 #include"mylabelarray.h"
-///
-/// \brief The Coding class
-///
+
+/// Handle encoding and decoding algorithms
 class Coding
 {
-private:
+protected:
+
+    /// Pointer to BoolArray or MyLabelArray
     ///
-    /// \brief array
-    ///
+    /// Polymorphic pointer
     Array *array;
+    /// Initial position
     ///
-    /// \brief position_initial
-    ///
+    /// This position points at top left corner of the square,
+    /// This coordinate tells us where we should take values from
+    /// or where divide square into 4 smaller parts(according to side)
     QVector<int> position_initial;
 
     //for encoding
-    ///
-    /// \brief boolToStr
-    ///
+    /// Map that turns bool value into string
     QMap<bool, QString> boolToStr;
 
     //for decoding
+    /// Map that turns string into bool value
     ///
-    /// \brief strToBool
     ///
     QMap<QString, bool> strToBool;
+    /// Code that we should decode to get a field
     ///
-    /// \brief code_d
-    ///
+    /// Used only with decoding
     QString code_d;
+    /// Current index to service in code_d
     ///
-    /// \brief place
-    ///
+    /// Used only with decoding
     int place;
 public:
+    /// Prepares for coding or decoding
+    /// \param array pointer to BoolArray or MyLabelArray
+    /// \param c code_d code for decoding, if we want to encode it has default value
     ///
-    /// \brief Coding
-    /// \param array
-    /// \param c
-    ///
+    /// Sets array pointer, number_of_radishes to 0,
+    /// position_initial, palce to initial values,
+    /// defines maps
     Coding(Array *array, QString c = "");
-    ///
-    ///
+
+    /// Sets array pointer to nullptr
     ///
     ~Coding();
 
+    /// Prepares for encoding
+    /// \return Final, encoded code
     ///
-    /// \brief startCoding initialize encoding alg
-    /// \return
-    ///
+    /// Starts recursive algorithm
     QString startCoding();
 
-    ///
-    /// \brief cuting function to turn "1111" -> "1"
+    /// Function that helps reduce code
     /// \param code
-    /// \return
+    /// \return Reduced code
     ///
+    /// Turns "1111" -> "1"
     QString cuting(QString code);
 
+    /// Main recursive algorithm
+    /// \param side side of the square
+    /// \param position position of square's top left corner
+    /// \return Encoded string from certain part of field
     ///
-    /// \brief recursionCoding main recursion alg
-    /// \param side
-    /// \param position
-    /// \return
-    ///
+    /// Divides all field into 4 smaller squares, that also are divided and so on
     QString recursionCoding(int side, QVector<int> position);
 
-
-    ///
-    /// \brief startDecoding initialize decoding alg
-    /// \param parent
+    /// Prepares for decoding
+    /// \param parent used just for MessageBox placement
     ///
     void startDecoding(QWidget *parent);
+    /// Main recursive algorithm
+    /// \param side side of the square
+    /// \param position position of square's top left corner
+    /// \param parent used just for MessageBox placement
     ///
-    /// \brief recursionDecoding
-    /// \param side
-    /// \param position
-    /// \param parent
-    ///
+    /// Uses recursion when encounter #
     void recursionDecoding(int side, QVector<int> position, QWidget *parent);
 };
 

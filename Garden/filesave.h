@@ -2,42 +2,44 @@
 #define FILESAVE_H
 
 #include "file.h"
-///
-/// \brief The FileSave class
-///
+
+/// Class services saving data to files
 class FileSave : public File
 {
 public:
-    FileSave();
     ///
-    /// \brief getName
-    /// \param parent
+    /// \brief Creates file: sample_output.txt
+    ///
+    FileSave();
+    /// Chooses a file with Dialog Window
+    /// \param parent used just for MessageBox placement
     ///
     void getName(QWidget *parent) override;
     ///
-    /// \brief saveCode
-    /// \param code
+    /// \brief Saves final code to files
+    /// \param code final code
     ///
     void saveCode(QString code);
     ///
-    /// \brief saveField
-    /// \param array
+    /// \brief Saves decoded field to file
+    /// \param array Array from which we should take values
     ///
     void saveField(Array *array);
 
+    /// \brief Handles saving code in multifield mode
+    /// \param code Current code to save
     ///
-    /// \brief saveMultiCode
-    /// \param code
-    ///
+    /// Appends code
     void saveMultiCode(QString code);
+    /// \brief Handles saving fields in multifield mode
+    /// \param array Current array to save
     ///
-    /// \brief saveMultiField
-    /// \param array
-    ///
+    /// Appends fields
     void saveMultiField(Array *array);
     ///
-    /// \brief cleanFile
+    /// \brief Cleans the file
     ///
+    /// This should be done before appending
     void cleanFile();
 };
 

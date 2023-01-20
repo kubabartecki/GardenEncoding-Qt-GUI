@@ -25,6 +25,7 @@ bool BoolArray::get_bool_value(int i, int j)
     if(correctIndex(i, j)){
         return barray[i][j];
     }
+    return 0;
 }
 
 void BoolArray::set_value(int i, int j, bool val)

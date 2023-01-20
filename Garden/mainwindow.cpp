@@ -49,10 +49,6 @@ MainWindow::~MainWindow()
     delete array;
 }
 
-int MainWindow::get_side_file(){
-    return side_file;
-}
-
 void MainWindow::addLabelsToGrid(){
 
     for(int i = 0; i < array->get_side(); i++){
@@ -307,7 +303,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 }
 
 
-void MainWindow::on_checkBox_multi_stateChanged(int arg1)
+void MainWindow::on_checkBox_multi_stateChanged()
 {
     on_tabWidget_currentChanged(ui->tabWidget->currentIndex());
 }

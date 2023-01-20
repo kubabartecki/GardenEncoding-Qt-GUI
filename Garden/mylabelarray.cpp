@@ -27,6 +27,7 @@ bool MyLabelArray::get_bool_value(int i, int j)
     if(correctIndex(i, j)){
         return labels[i][j]->get_click();
     }
+    return 0;
 }
 
 void MyLabelArray::set_value(int i, int j, bool val)

@@ -8,37 +8,40 @@
 #include <QDir>
 
 #include"boolarray.h"
-///
-/// \brief The File class
+
+/// Abstract class for file handling
 ///
 class File
 {
 public:
-    ///
-    /// \brief File
+    /// Defines sample_path as string
     ///
     File();
-    ///
-    /// \brief set_current_file
+    /// Sets path to current file
     ///
     void set_current_file(QString);
-    ///
-    /// \brief get_current_file
-    /// \return
+    /// Gets path to current file
+    /// \return path
     ///
     QString get_current_file();
-    ///
-    /// \brief getName
-    /// \param parent
+    /// Chooses a file with Dialog Window
+    /// \param parent used just for MessageBox placement
     ///
     virtual void getName(QWidget *parent) = 0;
 
 protected:
+    ///
+    /// \brief
+    /// Path in which should be stored sample files
     QString sample_path;
+    ///
+    /// \brief
+    /// Direction that creates sample_path
+    /// and sample files
     QDir dir;
     ///
-    /// \brief current_file
-    ///
+    /// \brief
+    /// Path to current file
     QString current_file;
 };
 

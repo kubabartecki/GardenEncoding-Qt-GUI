@@ -2,56 +2,60 @@
 #define MYLABEL_H
 
 #include <QLabel>
+
+
+/// \brief Class represents QLabel,
+/// but with some new features.
 ///
-/// \brief The MyLabel class
+/// Each MyLabel indicates one radish or one empty place on the field
 ///
+/// It has mousePressEvent, and bool click
+///
+/// This make QLabel more interactive
 class MyLabel : public QLabel
 {
     Q_OBJECT
 public:
+    /// Sets up MyLabel
+    /// \param click This value decides if on this certain place
+    /// radish is located: true - is located, false - not
     ///
-    /// \brief MyLabel
-    /// \param click
-    ///
+    /// Sets cick value and based on this information sets picture,
+    /// sets picture properties
     MyLabel(bool click);
     ///
-    /// \brief get_click
-    /// \return
+    /// \brief Gets click
+    /// \return true if object is radish, false if is empty
     ///
     bool get_click();
     ///
-    /// \brief set_click
-    /// \param click
+    /// \brief Sets click
+    /// \param click This value decides if on this certain place
+    /// radish is located: true - is located, false - not
     ///
     void set_click(bool click);
 
-    ///
-    /// \brief setPicAndClick
-    /// \param clk
-    ///
+    /// Sets picture and click at one time
+    /// \param clk click
     void setPicAndClick(bool clk);
-    ///
-    /// \brief changePicAndClick
-    ///
+
+    /// Sets picture and click on the opposite values
     void changePicAndClick();
 signals:
     ///
-    /// \brief clicked
+    /// \brief clicked Signal
     ///
     void clicked();
 
 protected:
-    ///
-    /// \brief click
-    ///
+    /// \brief This value decides if on this certain place
+    /// radish is located: true - is located, false - not
     bool click;
-    ///
-    /// \brief mousePressEvent
+
+    /// \brief Emits clicked and changes photo and click of MyLabel
+    /// on the opposite values
     /// \param event
-    ///
     void mousePressEvent(QMouseEvent* event);
-
 };
-
 
 #endif // MYLABEL_H

@@ -2,40 +2,39 @@
 #define BOOLARRAY_H
 
 #include"array.h"
+/// Represents the field as bool array
 ///
-/// \brief The BoolArray class
-///
+/// This class is used with larger fields/codes and multifields/multicodes
 class BoolArray : public Array
 {
-private:
+protected:
+    /// Pointer to main bool array
     ///
-    /// \brief barray
-    ///
+    /// Includes bool representants of field elements
     bool **barray;
 public:
+    /// Allocates the bool array
     ///
-    /// \brief BoolArray
-    /// \param p
+    /// \param p power
     ///
     BoolArray(int p);
-    ///
-    ///
+
+    /// Cleans memory
     ///
     ~BoolArray();
+
     //virtuals
-    ///
-    /// \brief get_bool_value
-    /// \param i
-    /// \param j
-    /// \return
-    ///
+    /// Gets bool value from certain index of array
+    /// \param i row
+    /// \param j column
+    /// \return bool value from certain index of array
     bool get_bool_value(int i, int j);
-    ///
+
+    /// Sets bool value on certain index of array
     /// \brief set_value
-    /// \param i
-    /// \param j
-    /// \param val
-    ///
+    /// \param i row
+    /// \param j column
+    /// \param val bool value to set on given index
     void set_value(int i, int j, bool val);
 };
 
