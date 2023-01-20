@@ -17,6 +17,11 @@ MainWindow::MainWindow(QWidget *parent)
     //select tab and radioButton
     ui->radioButtonKod->setChecked(1);
     ui->tabWidget->setCurrentIndex(0);
+    on_tabWidget_currentChanged(0);
+
+    //set sample files
+    setLabelNameFromFile(ui->label_open_file, &fileRead);
+    setLabelNameFromFile(ui->label_save_file, &fileSave);
 
     //
     power_file = 0;
@@ -52,7 +57,7 @@ void MainWindow::addLabelsToGrid(){
 
     for(int i = 0; i < array->get_side(); i++){
         for(int j = 0; j < array->get_side(); j++){
-            ui->gridLayout->addWidget(array->get_array_pointer()[i][j], i, j);
+            ui->gridLayout->addWidget(array->get_pMyLabel(i, j), i, j);
         }
     }
 }
@@ -277,3 +282,33 @@ void MainWindow::on_pushButtonKodDekod_clicked(bool checked)
         }
     }
 }
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+    QString final_desc;
+    if(0 == index){
+        final_desc = desc.get_file_tab_desc();
+
+        bool multi_check = ui->checkBox_multi->isChecked();
+        if(multi_check){
+            final_desc += desc.get_multi_field_desc();
+        }
+        else{
+            final_desc += desc.get_single_field_desc();
+        }
+    }
+    else if(1 == index){
+        final_desc = desc.get_manual_tab_desc();
+    }
+
+
+
+    ui->label_info->setText(final_desc);
+}
+
+
+void MainWindow::on_checkBox_multi_stateChanged(int arg1)
+{
+    on_tabWidget_currentChanged(ui->tabWidget->currentIndex());
+}
+

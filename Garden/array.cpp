@@ -35,3 +35,11 @@ void Array::set_number_of_radishes(int num)
 {
     number_of_radishes = num;
 }
+
+bool Array::correctIndex(int i, int j)
+{
+    if(i >= 0 && j >= 0 && i < this->side && j < this->side){
+        return true;
+    }
+    return false;
+}

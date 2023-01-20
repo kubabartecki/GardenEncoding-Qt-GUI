@@ -48,6 +48,7 @@ QString Coding::recursionCoding(int side, QVector<int> position){
 }
 
 //decoding part
+
 void Coding::startDecoding(QWidget *parent){
     recursionDecoding(array->get_side(), {0, 0}, parent);
 }

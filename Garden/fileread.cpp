@@ -2,7 +2,30 @@
 
 FileRead::FileRead()
 {
+    dir.setCurrent(".");
+    //create directory
+    if (!dir.exists(sample_path)){
+        dir.mkdir(sample_path);
+    }
 
+    dir.cd(sample_path);
+    current_file = dir.absolutePath() + "/sample_code.txt";
+    QFile file(current_file);
+    file.open(QFile::WriteOnly | QFile::Text);
+    QTextStream out(&file);
+    out << "2 #1011";
+    file.close();
+
+    current_file = dir.absolutePath() + "/sample_field.txt";
+    file.setFileName(current_file);
+    file.open(QFile::WriteOnly | QFile::Text);
+    QTextStream out2(&file);
+    out2 << "2\n"
+           "1100\n"
+           "1100\n"
+           "1111\n"
+           "1111";
+    file.close();
 }
 
 void FileRead::readField(Array *array, QWidget *parent){

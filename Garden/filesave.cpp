@@ -2,8 +2,14 @@
 
 FileSave::FileSave()
 {
-
+    dir.setCurrent(".");
+    dir.cd(sample_path);
+    current_file = dir.absolutePath() + "/sample_output.txt";
+    QFile file(current_file);
+    file.open(QFile::WriteOnly | QFile::Text);
+    file.close();
 }
+
 void FileSave::getName(QWidget *parent){
     QString fileName = QFileDialog::getSaveFileName(parent, "Zapisz do", "", "Pliki tekstowe (*.txt)");
     QFile file(fileName);

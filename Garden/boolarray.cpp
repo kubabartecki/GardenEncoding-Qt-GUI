@@ -22,10 +22,14 @@ BoolArray::~BoolArray()
 
 bool BoolArray::get_bool_value(int i, int j)
 {
-    return barray[i][j];
+    if(correctIndex(i, j)){
+        return barray[i][j];
+    }
 }
 
 void BoolArray::set_value(int i, int j, bool val)
 {
-    barray[i][j] = val;
+    if(correctIndex(i, j)){
+        barray[i][j] = val;
+    }
 }

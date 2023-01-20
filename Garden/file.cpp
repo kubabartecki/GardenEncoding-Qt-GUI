@@ -1,8 +1,9 @@
 #include "file.h"
 
+
 File::File()
 {
-    current_file = "";
+    sample_path = "sample_files";
 }
 
 void File::set_current_file(QString file)

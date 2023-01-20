@@ -9,7 +9,6 @@ MyLabelArray::MyLabelArray(int p):Array(p)
             labels[i][j] = new MyLabel(true);
         }
     }
-
 }
 
 MyLabelArray::~MyLabelArray(){    
@@ -20,21 +19,27 @@ MyLabelArray::~MyLabelArray(){
         delete [] labels[i];
     }
     delete [] labels;
-
     labels = nullptr;
 }
 
 bool MyLabelArray::get_bool_value(int i, int j)
 {
-    return labels[i][j]->get_click();
+    if(correctIndex(i, j)){
+        return labels[i][j]->get_click();
+    }
 }
 
 void MyLabelArray::set_value(int i, int j, bool val)
 {
-    labels[i][j]->setPicAndClick(val);
+    if(correctIndex(i, j)){
+        labels[i][j]->setPicAndClick(val);
+    }
 }
 
-MyLabel ***MyLabelArray::get_array_pointer()
+MyLabel* MyLabelArray::get_pMyLabel(int i, int j)
 {
-    return labels;
+    if(correctIndex(i, j)){
+        return labels[i][j];
+    }
+    return nullptr;
 }

@@ -12,6 +12,7 @@ SOURCES += \
     array.cpp \
     boolarray.cpp \
     coding.cpp \
+    descriptions.cpp \
     file.cpp \
     fileread.cpp \
     filesave.cpp \
@@ -24,6 +25,7 @@ HEADERS += \
     array.h \
     boolarray.h \
     coding.h \
+    descriptions.h \
     file.h \
     fileread.h \
     filesave.h \
