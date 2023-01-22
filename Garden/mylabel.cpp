@@ -1,8 +1,7 @@
 #include "mylabel.h"
 
-//for pixmaps
-QString empty = "://img/img/empty-cut-frame.png";
-QString radish = "://img/img/rad-cut-frame.png";
+QString MyLabel::empty = "://img/img/empty-cut-frame.png";
+QString MyLabel::radish = "://img/img/rad-cut-frame.png";
 
 MyLabel::MyLabel(bool clk)
 {

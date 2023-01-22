@@ -12,6 +12,7 @@ class MyLabelArray : public Array
 protected:
     /// Pointer to 2D array of pointers
     MyLabel ***labels;
+
 public:
     /// \brief Allocates memory for the array, assumes that
     /// default value of MyLabel should be true(radish picture)

@@ -48,6 +48,16 @@ signals:
     void clicked();
 
 protected:
+    //for pixmaps
+    ///
+    /// \brief Path to emppty place picture
+    ///
+    static QString empty;
+    ///
+    /// \brief Path to radish picture
+    ///
+    static QString radish;
+
     /// \brief This value decides if on this certain place
     /// radish is located: true - is located, false - not
     bool click;
